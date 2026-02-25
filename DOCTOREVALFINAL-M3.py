@@ -17,11 +17,23 @@ def registro_hora():
         "fecha": input("Fecha de Cita Médica: "), 
         "hora": input("Horario de Cita: ")
     }
-    lista_horas.append(paciente)
+    lista_horas.append(paciente)  #.append() para agregar hora a lista
     print("Cita médica reservada con éxito. \n")
+    
 # buscar_hora()
 def buscar_hora():
     run_buscar = input("Ingrese RUN a buscar: ")
+    cita = False
+
+    for paciente in lista_horas:
+        if paciente["run"] == run_buscar:
+            print("\n - - - LISTA   DE   CITAS   MÉDICAS - - -")
+            for campo, valor in paciente.items():
+                print(f"{campo}: {valor}")
+                cita = True
+                break
+        else:
+            print("No hay horas que mostrar.")
 
 # lista de horas
 def lista_citas():
@@ -106,7 +118,7 @@ def menu():
     # 5. SALIR DEL PROGRAMA
         elif opcion == "6":
             print("\nC e r r a n d o   p r o g r a m a . . .")
-            break
+            break  #  break para detener bucle y programa
         else:
             print("Opción no válida. Intente nuevamente.\n \n")
 
