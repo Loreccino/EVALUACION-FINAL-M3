@@ -27,26 +27,28 @@ def buscar_hora():
 
     for paciente in lista_horas:
         if paciente["run"] == run_buscar:
-            print("\n - - - LISTA   DE   CITAS   MÉDICAS - - -")
+            print("\n - - - INFORMACIÓN   DE   CITAS   MÉDICAS - - -")
             for campo, valor in paciente.items():
                 print(f"{campo}: {valor}")
-                cita = True
-                break
-        else:
-            print("No hay horas que mostrar.")
+            cita = True
+            break
+    if not cita:
+        print("No hay horas asociadas al RUN.\n")
 
 # lista de horas
 def lista_citas():
-    print("- - - - - LISTA   DE   HORAS - - - - -")
+    print("\n- - - - - LISTA   DE   HORAS - - - - -")
     for paciente in lista_horas:
-        print(f"Paciente: {paciente["nombre"]} - RUN: {paciente["run"]} - Fecha: {paciente["fecha"]}, Hora: {paciente["hora"]}")
-        if paciente == None:
-            print("No hay citas médicas registradas")
+        print(f"Paciente: {paciente["nombre"]} - RUN: {paciente["run"]} - Fecha: {paciente["fecha"]}, Hora: {paciente["hora"]} \n")
+    
+    if not lista_horas:
+        print("No hay horas registradas en sistema.\n")
 
 
 # modificar_hora()
 def modificar_hora():
-    run_modif = input("Ingrese RUN de Paciente: ")
+    run_modif = input("\nIngrese RUN de Paciente: ")
+
     for paciente in lista_horas:
         if paciente["run"] == run_modif:
             print("¿Desea modificar todos los datos o solo un o en específico?")
@@ -69,23 +71,23 @@ def modificar_hora():
             elif op_cambiar =="2":
                 dato_modif = input("¿Qué dato desea modificar de la cita?: ")
                 if dato_modif in paciente:
-                    paciente[dato_modif] = input("{dato_modif}: ")
+                    paciente[dato_modif] = input(f"{dato_modif}: ")
                     print("Dato actualizado con éxito!")
             else:
-                print("Opción no válida. Intente nuevamente.")
-        else:
-            print("RUN no encontrado")
+                print("Opción no válida. Intente nuevamente.\n")
+    if not lista_horas:
+            print("RUN no encontrado\n")
 
 # eliminar_hora()
 def eliminar_hora():
-    print("- - - - - ELIMINAR   CITA   MÉDICA - - - - -")
+    print("\n- - - - - ELIMINAR   CITA   MÉDICA - - - - -")
     run_borrar = input("Ingrese RUN de Paciente: ")
     for i in range(len(lista_horas)):  #ciclo for para buscar RUN de paciente, i para indexar, len para contabilizar
         if lista_horas[i]["run"] == run_borrar:
             lista_horas.pop(i)   #  eliminar hora por indice
-            print("Cita médica eliminada correctamente. \n")
-        else:
-            print("No hay citas médicas registradas para eliminar")
+            print("\nCita médica eliminada correctamente. \n")
+    if not lista_horas:    
+        print("\nNo hay citas médicas registradas para eliminar. \n")
 
 
 # PASO 2. MENU + INPUTS
